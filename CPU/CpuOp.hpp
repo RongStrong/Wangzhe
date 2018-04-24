@@ -12,6 +12,9 @@ class CpuOp {
 
 public:
 	double readOverhead();
+    double loopOverhead();
+	vector<double> procedureOverhead();
+	double systemCallOverhead();
 	double ConWitchProOverhead();
 	double ConWitchThrOverhead();
 	double CreateThrOverhead();

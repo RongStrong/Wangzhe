@@ -32,6 +32,108 @@ double CpuOp::readOverhead(){
 	return double(1.0*sum/TIMES);
 }
 
+double CpuOp::loopOverhead(){
+	uint64_t start;
+	uint64_t end;
+	start = rdtsc1();
+	for(int i=0;i<TIMES;i++){}
+	end = rdtsc1();
+	return double(1.0*(end-start)/TIMES);
+}
+
+vector<double> CpuOp::procedureOverhead(){
+	vector<double> res;
+	uint64_t sum = 0;
+	uint64_t start;
+	uint64_t end;
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee0();
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee1(0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee2(0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee3(0,0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee4(0,0,0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee5(0,0,0,0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee6(0,0,0,0,0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	sum = 0;
+	
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		callee7(0,0,0,0,0,0,0);
+		end = rdtsc1();
+		sum += end-start;
+	}
+	res.push_back(double(1.0*sum/TIMES));
+	
+	
+	return res;
+}
+
+double CpuOp::systemCallOverhead(){
+	uint64_t sum = 0;
+	uint64_t start;
+	uint64_t end;
+	for(int i=0;i<TIMES;i++){
+		start = rdtsc1();
+		getpid();
+		end = rdtsc1();
+		sum += start-end;
+	}
+	return double(1.0*sum/TIMES);
+}
+
 double CpuOp::ConWitchProOverhead(){
 	uint64_t sum = 0;
 	uint64_t count = 0;
