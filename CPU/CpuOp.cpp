@@ -1,5 +1,6 @@
 #include "CpuOp.hpp"
 #include <stdint.h>
+#include <vector>
 
 #define TIMES 10000
 
