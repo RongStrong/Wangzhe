@@ -21,6 +21,15 @@ uint64_t inline rdtsc1(){
 	return ((uint64_t)hi << 32) | lo;
 }
 
+void inline callee0(){}
+void inline callee1(int a){}
+void inline callee2(int a,int b){}
+void inline callee3(int a,int b,int c){}
+void inline callee4(int a,int b,int c,int d){}
+void inline callee5(int a,int b,int c,int d,int e){}
+void inline callee6(int a,int b,int c,int d,int e,int f){}
+void inline callee7(int a,int b,int c,int d,int e,int f,int g){}
+
 double CpuOp::readOverhead(){
 	uint64_t sum = 0;
 	uint64_t start;
