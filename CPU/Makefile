@@ -7,7 +7,7 @@ FILES=CpuOp.cpp test.cpp
 all: CpuOp
 
 CpuOp: $(FILES) $(H_FILES)
-	$(CC) $(CFLAGS) -o CpuOp $(FILES)
+	$(CC) $(CFLAGS) -o CpuOp $(FILES) -lpthread
 
 clean:
 	rm -rf CpuOp

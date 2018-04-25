@@ -7,7 +7,7 @@ int main(){
 	CpuOp cpuTester;
     cout<< "readOverhead:" << cpuTester.readOverhead() << endl;
 	cout<< "loopOverhead:" << cpuTester.loopOverhead() << endl;
-	cout<< cpuTester.CreateProOverhead() << endl;
+//	cout<< cpuTester.CreateProOverhead() << endl;
     vector<double> procOverhead = cpuTester.procedureOverhead();
 	cout<< "procedureOverhead:"  << endl;
 	for(auto it = procOverhead.begin();it != procOverhead.end();it++){

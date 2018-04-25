@@ -4,7 +4,7 @@
 
 #define TIMES 10000
 
-uint64_t inline rdtsc()
+uint64_t inline rdtsc1()
 {
         uint32_t lo,hi;
 
@@ -15,7 +15,7 @@ uint64_t inline rdtsc()
         return ((uint64_t)hi<<32|lo);
 }
 
-uint64_t inline rdtsc1(){
+uint64_t inline rdtsc(){
 	uint32_t lo, hi;
 	__asm__ __volatile__("xor %%eax, %%eax;" "cpuid;" "rdtsc;": "=a" (lo), "=d" (hi));
 	return ((uint64_t)hi << 32) | lo;
