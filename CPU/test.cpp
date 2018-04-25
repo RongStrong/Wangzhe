@@ -13,10 +13,15 @@ int main(){
 	for(auto it = procOverhead.begin();it != procOverhead.end();it++){
 		cout<< *it << endl;
 	}
+	double ConWitchProOverhead = cpuTester.ConWitchProOverhead();
+	double ConWitchThrOverhead = cpuTester.ConWitchThrOverhead();
+	double CreateProOverhead = cpuTester.CreateProOverhead();
+	double CreateThrOverhead = cpuTester.CreateThrOverhead();
+
     cout<< "systemCallOverhead:" << cpuTester.systemCallOverhead() << endl;
-	cout<< "ConWitchProOverhead:" << cpuTester.ConWitchProOverhead() << endl;
-    cout<< "ConWitchThrOverhead:" << cpuTester.ConWitchThrOverhead() << endl;
-    cout<< "CreateProOverhead:" << cpuTester.CreateProOverhead() << endl;
-    cout<< "CreateThrOverhead:" << cpuTester.CreateThrOverhead() << endl;
+	cout<< "ConWitchProOverhead:" << ConWitchProOverhead << endl;
+    cout<< "ConWitchThrOverhead:" << ConWitchThrOverhead << endl;
+    cout<< "CreateProOverhead:" << CreateProOverhead << endl;
+    cout<< "CreateThrOverhead:" << CreateThrOverhead << endl;
 	return 0;
 }
