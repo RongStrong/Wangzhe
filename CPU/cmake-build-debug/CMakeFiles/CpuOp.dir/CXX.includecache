@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/sisyphus/Documents/cse221/Wangzhe/CPU/CpuOp.cpp
+CpuOp.hpp
+/Users/sisyphus/Documents/cse221/Wangzhe/CPU/CpuOp.hpp
+stdint.h
+-
+vector
+-
+
+/Users/sisyphus/Documents/cse221/Wangzhe/CPU/CpuOp.hpp
+stdio.h
+-
+stdlib.h
+-
+pthread.h
+-
+sys/wait.h
+-
+unistd.h
+-
+vector
+-
+
+/Users/sisyphus/Documents/cse221/Wangzhe/CPU/test.cpp
+CpuOp.hpp
+/Users/sisyphus/Documents/cse221/Wangzhe/CPU/CpuOp.hpp
+iostream
+-
+vector
+-
+
