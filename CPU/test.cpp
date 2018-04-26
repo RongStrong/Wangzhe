@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
 	CpuOp cpuTester;
-    cout<< "readOverhead:" << cpuTester.readOverhead() << endl;
+	cout<< "readOverhead:" << cpuTester.readOverhead() << endl;
 	cout<< "loopOverhead:" << cpuTester.loopOverhead() << endl;
 //	cout<< cpuTester.CreateProOverhead() << endl;
     vector<double> procOverhead = cpuTester.procedureOverhead();
@@ -17,8 +17,9 @@ int main(){
 	double ConWitchThrOverhead = cpuTester.ConWitchThrOverhead();
 	double CreateProOverhead = cpuTester.CreateProOverhead();
 	double CreateThrOverhead = cpuTester.CreateThrOverhead();
+	double systemCallOverhead = cpuTester.systemCallOverhead();
 
-    cout<< "systemCallOverhead:" << cpuTester.systemCallOverhead() << endl;
+    cout<< "systemCallOverhead:" << systemCallOverhead << endl;
 	cout<< "ConWitchProOverhead:" << ConWitchProOverhead << endl;
     cout<< "ConWitchThrOverhead:" << ConWitchThrOverhead << endl;
     cout<< "CreateProOverhead:" << CreateProOverhead << endl;

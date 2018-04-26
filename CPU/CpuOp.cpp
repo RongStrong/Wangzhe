@@ -1,6 +1,7 @@
 #include "CpuOp.hpp"
 #include <stdint.h>
 #include <vector>
+#include <iostream>
 
 #define TIMES 10000
 
@@ -68,6 +69,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee1(0);
+		//callee1(i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -77,6 +79,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee2(0,0);
+		//callee2(i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -86,6 +89,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee3(0,0,0);
+		//callee3(i,i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -95,6 +99,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee4(0,0,0,0);
+		//callee4(i,i,i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -104,6 +109,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee5(0,0,0,0,0);
+		//callee5(i,i,i,i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -113,6 +119,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee6(0,0,0,0,0,0);
+		//callee6(i,i,i,i,i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -122,6 +129,7 @@ vector<double> CpuOp::procedureOverhead(){
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
 		callee7(0,0,0,0,0,0,0);
+		//callee7(i,i,i,i,i,i,i);
 		end = rdtsc1();
 		sum += end-start;
 	}
@@ -135,17 +143,24 @@ double CpuOp::systemCallOverhead(){
 	uint64_t sum = 0;
 	uint64_t start;
 	uint64_t end;
+	
 	for(int i=0;i<TIMES;i++){
 		start = rdtsc1();
-		getpid();
+		getppid();
 		end = rdtsc1();
-		sum += start-end;
+		//std::cout << end-start << endl;
+		sum += end-start;
 	}
+/*
+		uint64_t id;
 		start = rdtsc1();
 		getpid();
 		end = rdtsc1();
-		sum = start-end;
-	return double(1.0*sum/1);
+		std::cout << start << "/" << end << endl;
+		//sum = start-end;
+		sum = end-start;
+		*/
+	return double(1.0*sum/TIMES);
 }
 
 double CpuOp::ConWitchProOverhead(){
