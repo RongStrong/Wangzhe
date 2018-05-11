@@ -28,8 +28,8 @@ double MemoryOp::pageFaultTime() {
 		int offset = (i + 1) * 5 * page_size % file_size;
 		//tmp = map[offset];
 		start = rdtsc1();
-		//tmp = map[offset];
-		tmp = map[(i + 1) * 5 * page_size % file_size];
+		tmp = map[offset];
+		//tmp = map[(i + 1) * 5 * page_size % file_size];
 		end = rdtsc1();
 		sum += end - start;
 	}
