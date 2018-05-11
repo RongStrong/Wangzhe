@@ -21,24 +21,26 @@ uint64_t inline rdtsc1()
 double MemoryOp::pageFaultTime() {
 	uint64_t start;
 	uint64_t end;
-	uint64_t sum;
-	int fd = open("TheBlueDanube.mp3", O_RDWR);
+	uint64_t sum = 0;
+	int fd = open("../../CloudAtlas.mp4", O_RDWR);
 	unsigned int page_size = 4096;
-	unsigned int file_size = 20971520;
+	unsigned int file_size = 3435973836;
 	char* map =(char*) mmap(NULL, file_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 	char tmp;
 	start = rdtsc1();
-	for(int i = 0; i < 1000; i++) {
-		int offset = ((i + 1) * page_size) % file_size;
+	for(int i = 0; i < 100000; i++) {
+		int offset = (i + 1) * 5 * page_size % file_size;
+		//tmp = map[offset];
 		start = rdtsc1();
 		tmp = map[offset];
+		//tmp = map[(i + 1) * 5 * page_size % file_size];
 		end = rdtsc1();
 		sum += end - start;
 	}
 
 	munmap(map, file_size);
 	close(fd);
-	double res = sum * 1.0 / 1000;
+	double res = sum * 1.0 / 100000;
 	return res;
 }
 
