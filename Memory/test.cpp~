@@ -7,6 +7,6 @@ int main() {
 	MemoryOp memoryTester;
 	/*cout << "page fault service time: " << memoryTester.pageFaultTime() << endl;*/
 	
-	memoryTester.MemoryBindWidth(1);
+	memoryTester.MemoryBindWidth();
 	return 0;
 }

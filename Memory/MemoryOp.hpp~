@@ -9,7 +9,7 @@ using namespace std;
 class MemoryOp {
 public:
 	double pageFaultTime();
-	void MemoryBindWidth(int rounds);
+	void MemoryBindWidth();
 
 
 };
