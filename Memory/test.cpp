@@ -10,4 +10,8 @@ int main() {
 	memoryTester.MemoryBindWidth(1);
 	memoryTester.MemoryLatency();
 	return 0;
+
+
+
+
 }
