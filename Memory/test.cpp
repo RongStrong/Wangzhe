@@ -8,5 +8,6 @@ int main() {
 	cout << "page fault service time: " << memoryTester.pageFaultTime() << endl;
 	
 	memoryTester.MemoryBindWidth(1);
+	memoryTester.MemoryLatency();
 	return 0;
 }

@@ -106,3 +106,46 @@ double MemoryReadBD(int *array, int len, int numloop){
 	uint64_t volumn = 4*len*numloop;
 	return double(volumn)/sum;
 }
+
+
+double MemoryOp::MemoryLatency(){
+
+
+	for(int sizeIndex = 10; sizeIndex < 25; sizeIndex++){
+		for(int stride = 1; stride < 10; stride ++){
+
+			size_t size = 1 << sizeIndex;
+			uint64_t* array = (uint64_t*) malloc(size);
+            memset(array, 0, size);
+            void ** parray =  (void **) array;
+
+			int num = size/(sizeof(int*));
+
+			for(int i=0; i<num; i++){
+				parray[i] = &parray[(i+stride)%num];
+			}
+
+			uint64_t* p = array;
+                uint64_t start;
+	        uint64_t end;
+	        uint64_t sum=0;
+
+            for(int i=0; i<1000; i++){
+            	start = rdtsc1();
+            	p = (uint64_t*) (*p);
+            	end = rdtsc1();
+
+                sum+=(end-start);
+            }
+
+            float latency = (sum*1.0)/1000;
+
+            printf("SizeIndex is %d, stride is %d, latency is %f\n", sizeIndex, stride, latency);
+
+		}
+	}
+
+	return 0.0;
+
+}
+
