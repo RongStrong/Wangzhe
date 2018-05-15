@@ -47,7 +47,7 @@ double MemoryOp::pageFaultTime() {
 }
 
 void MemoryOp::MemoryBindWidth(int rounds){
-	int exp = 26;
+	int exp = 25;
 	uint64_t len = 1 << exp;
 	int size = len*sizeof(int);
 	int *in;
