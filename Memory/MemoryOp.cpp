@@ -47,7 +47,7 @@ double MemoryOp::pageFaultTime() {
 }
 
 void MemoryOp::MemoryBindWidth(int rounds){
-	int exp = 26;
+	int exp = 25;
 	uint64_t len = 1 << exp;
 	int size = len*sizeof(int);
 	int *in;
@@ -83,7 +83,7 @@ double MemoryWriteBD(int *array, uint64_t len, int numloop){
 		for(int j=0;j<len;j++){
 			//cout<<"writing"<<endl;
 			//start = rdtsc1();
-			array[j] = i;
+			array[j] = 123;
 			//end = rdtsc1();
 			//sum += end-start;
 		}
@@ -101,14 +101,14 @@ double MemoryReadBD(int *array, uint64_t len, int numloop){
 	uint64_t start;
 	uint64_t end;
 	uint64_t sum;
-	int tmp;
+	uint64_t tmp;
 	int stride = 1 << 16;
 	start = rdtsc1();
 	for(int i=0;i<numloop;i++){
 		//start = rdtsc1();
 		for(int j=0;j<len;j++){
 			//start = rdtsc1();
-			tmp = array[j];
+			tmp += array[j];
 			//end = rdtsc1();
 			//sum += end-start;
 		}
@@ -119,7 +119,6 @@ double MemoryReadBD(int *array, uint64_t len, int numloop){
 	sum = end-start;
 	uint64_t volumn = 4*len*numloop;
 	return double(volumn)*1024/(sum*0.45);
-	
 }
 
 
