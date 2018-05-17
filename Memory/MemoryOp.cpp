@@ -22,16 +22,16 @@ double MemoryOp::pageFaultTime() {
 	uint64_t start;
 	uint64_t end;
 	uint64_t sum = 0;
-	//int fd = open("../../CloudAtlas.mp4", O_RDWR);
-	int fd = open("TheBlueDanube.mp3", O_RDWR);
+	int fd = open("../../CloudAtlas.mp4", O_RDWR);
+	//int fd = open("TheBlueDanube.mp3", O_RDWR);
 	unsigned int page_size = 4096;
-	//unsigned int file_size = 3435973836;
-	unsigned int file_size = 24517284;
+	unsigned int file_size = 3435973836;
+	//unsigned int file_size = 24517284;
 	char* map =(char*) mmap(NULL, file_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 	char tmp;
 	start = rdtsc1();
-	for(int i = 0; i < 1000; i++) {
-		int offset = (i + 1) * 5 * page_size % file_size;
+	for(int i = 0; i < 100; i++) {
+		int offset = (i + 1) * 100 * page_size % file_size;
 		//tmp = map[offset];
 		start = rdtsc1();
 		tmp = map[offset];
@@ -42,7 +42,8 @@ double MemoryOp::pageFaultTime() {
 
 	munmap(map, file_size);
 	close(fd);
-	double res = sum * 1.0 / 1000;
+	double res = sum * 1.0 / 100;
+	res = res * 0.45 / 1000000;
 	return res;
 }
 
