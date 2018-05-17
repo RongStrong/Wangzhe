@@ -80,10 +80,17 @@ double MemoryWriteBD(int *array, uint64_t len, int numloop){
 	start = rdtsc1();
 	for(int i=0;i<numloop;i++){
 		//start = rdtsc1();
-		for(int j=0;j<len;j++){
+		for(int j=0;j<len;j+=8){
 			//cout<<"writing"<<endl;
 			//start = rdtsc1();
 			array[j] = 123;
+			array[j+1] = 124;
+			array[j+2] = 124;
+			array[j+3] = 124;
+			array[j+4] = 124;
+			array[j+5] = 124;
+			array[j+6] = 124;
+			array[j+7] = 124;
 			//end = rdtsc1();
 			//sum += end-start;
 		}
@@ -106,9 +113,16 @@ double MemoryReadBD(int *array, uint64_t len, int numloop){
 	start = rdtsc1();
 	for(int i=0;i<numloop;i++){
 		//start = rdtsc1();
-		for(int j=0;j<len;j++){
+		for(int j=0;j<len;j+=8){
 			//start = rdtsc1();
-			tmp += array[j];
+			tmp = array[j];
+			tmp = array[j+1];
+			tmp = array[j+2];
+			tmp = array[j+3];
+			tmp = array[j+4];
+			tmp = array[j+5];
+			tmp = array[j+6];
+			tmp = array[j+7];
 			//end = rdtsc1();
 			//sum += end-start;
 		}
