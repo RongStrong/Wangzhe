@@ -1,0 +1,78 @@
+#include <stdio.h>      /* for printf() and fprintf() */
+#include <sys/socket.h> /* for socket(), bind(), and connect() */
+#include <arpa/inet.h>  /* for sockaddr_in and inet_ntoa() */
+#include <stdlib.h>     /* for atoi() and exit() */
+#include <string.h>     /* for memset() */
+#include <unistd.h>     /* for close() */
+#include "rdtsc.h"
+
+using namespace std;
+#define BUFSIZE 2048
+
+uint64_t inline rdtsc1()
+{
+	uint32_t lo,hi;
+
+       	__asm__ __volatile__
+	(
+	 "rdtsc":"=a"(lo),"=d"(hi)
+	);
+	return ((uint64_t)hi<<32|lo);
+}
+
+
+void startupClient(int op, int echoServPort)
+{
+    int clntSock;                    /* Socket descriptor for client */
+    struct sockaddr_in echoClntAddr; /* Client address */
+    char *servIP = "127.0.0.1";
+    char *sendString = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    char buffer[BUFSIZE];
+    
+    if ((clntSock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
+        fprintf("socket() failed");
+        
+    /* Construct local address structure */
+    memset(&echoClntAddr, 0, sizeof(echoServAddr));   /* Zero out structure */
+    echoClntAddr.sin_family = AF_INET;                /* Internet address family */
+    echoClntAddr.sin_port = htons(echoServPort);      /* Local port */
+    
+    int rtnVal = inet_pton(AF_INET, servIP, &servAddr.sin_addr.s_addr);
+	if (rtnVal == 0)
+		fprintf("inet_pton() failed", "invalid address string");
+	else if (rtnVal < 0)
+		fprintf("inet_pton() failed");
+	
+	if (connect(clntSock, (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) < 0)
+		fprintf("connect() failed");
+	
+	//Round trip time
+	if(op==0){
+		uint64_t start;
+		uint64_t end;
+		times = 1000;
+		int len = strlen(sendString);
+		start = rdtsc1();
+		for(int i=0;i<times;i++){
+			if(send(clntSock,sendString,len,0)!=len){
+				fprintf("client send error");
+			}
+			if(recv(clntSock,buffer,BUFSIZE-1,0)!=len){
+				fprintf("client receive error");
+			}
+		}
+		end = rdtsc1();
+		double avg = (end-start)*0.45/(1000*1000000)
+		fprintf("Round trip time: %f ms",avg);
+	}
+	//Bandwidth
+	else if(op==1){
+		
+	}
+	//Connection overhead
+	else if(op==2){
+	
+	}
+	
+	close(clntSock);
+}

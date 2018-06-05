@@ -1,0 +1,12 @@
+CC=g++
+CFLAGS=-ggdb -Wall -pedantic
+
+FILES=NetworkServer.c NetworkClient.c HandleTCPClient.c test.c
+
+all: NetworkOp
+
+MemoryOp: $(FILES) $(H_FILES)
+	        $(CC) $(CFLAGS) -o NetworkOp $(FILES) 
+
+clean:
+	        rm -rf NetworkOp
